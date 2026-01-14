@@ -13,5 +13,5 @@
       copy:
         dest: /usr/share/nginx/html/index.html
         content: |
-          <h1>Hello Razzi!</h1>
+          <h1>Hello Razzi no 2!</h1>
           <p>This was deployed automatically.</p>
