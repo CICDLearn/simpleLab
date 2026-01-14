@@ -1,10 +1,17 @@
 - name: Configure Web Server
   hosts: all
-  connection: docker # Connect directly to Docker container (no SSH needed)
+  connection: docker
+  gather_facts: false   # <--- FIX 1: Don't check for Python immediately
+  
   tasks:
+    # <--- FIX 2: Install Python manually using a raw shell command
+    - name: Install Python 3
+      raw: apt-get update && apt-get install -y python3
+      changed_when: false
+
     - name: Create a custom homepage
       copy:
         dest: /usr/share/nginx/html/index.html
         content: |
-          <h1>Hello Staff!</h1>
+          <h1>Hello TEAM!</h1>
           <p>This was deployed automatically.</p>
